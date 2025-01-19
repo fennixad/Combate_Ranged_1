@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     private readonly int hitpoints = 100;
     private int currentHitpoints;
     public TextMeshProUGUI textMeshProUGUI;
+    public Animator animator;
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class EnemyController : MonoBehaviour
         currentHitpoints -= dmg;
         currentHitpoints = Mathf.Max(currentHitpoints, 0);
         UpdateHealthDisplay();
-
+        animator.SetTrigger("Hurted");
         if (currentHitpoints <= 0)
         {
             Death();
@@ -58,6 +59,6 @@ public class EnemyController : MonoBehaviour
     private void Death()
     {
         Debug.Log("Muerto");
-        //Destroy(gameObject);
+        animator.SetTrigger("Death");
     }
 }
